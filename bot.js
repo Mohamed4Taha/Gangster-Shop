@@ -93,7 +93,7 @@ client.on('message', msg => {
 //الترحيب
 
 client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '♛『five』♛');
+    let channel = member.guild.channels.find('name', '→chat←);
     let memberavatar = member.user.avatarURL
       if (!channel) return;
     let embed = new Discord.RichEmbed()
@@ -113,24 +113,9 @@ client.on('guildMemberAdd', member => {
    
       channel.sendEmbed(embed);
     });
-	
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
-        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('RED')
-        .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-    
-    var channel =member.guild.channels.find('name', 'welcome')
-    if (!channel) return;
-    channel.send({embed : embed});
 
-    });
-    
-	
+
+
 	
 //الترحيب الخاص
 
@@ -148,7 +133,7 @@ client.on("guildMemberAdd", member => {
 //معلومات عن البوت
 
          client.on('message', message => {
-            if (message.content.startsWith("*bot")) {
+            if (message.content.startsWith("&bot")) {
      let embed = new Discord.RichEmbed()
 .setThumbnail(message.author.avatarURL)
 .addField(' البنق🚀 ',`[${Date.now() - message.createdTimestamp}]`) 
@@ -165,7 +150,7 @@ client.on("guildMemberAdd", member => {
 
 client.on("message", message => { //clear
               var args = message.content.substring(prefix.length).split(" ");
-              if (message.content.startsWith("*clear")) {
+              if (message.content.startsWith("&clear")) {
                   if(!message.channel.guild) return message.reply('**❌ اسف لكن هذا الامر للسيرفرات فقط **');         
      if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**⚠  لا يوجد لديك صلاحية لمسح الشات**');
           var msg;
@@ -192,11 +177,11 @@ client.on("message", message => { //clear
 //صورة السيرفر
 
 client.on("message", message => {
-    const prefix = "*"
+    const prefix = "&"
               
           if(!message.channel.guild) return;
    if(message.author.bot) return;
-      if(message.content === "*image"){ 
+      if(message.content === "&image"){ 
           const embed = new Discord.RichEmbed()
   
       .setTitle(`This is  ** ${message.guild.name} **  Photo !`)
@@ -215,7 +200,7 @@ client.on("message", message => {
 //الباند
 
 client.on('message', message => {
-    var prefix = "*"
+    var prefix = "&"
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -259,7 +244,7 @@ client.on('message', message => {
 //الغاء الباند 
 
 client.on('message' , najzx => {
-    var prefix = "$";
+    var prefix = "&";
     let user = najzx.mentions.users.first()|| client.users.get(najzx.content.split(' ')[1])
     if(najzx.content.startsWith(prefix + 'unban')) {
         if(!najzx.member.hasPermission('ADMINISTRATOR')) return najzx.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
@@ -284,7 +269,7 @@ client.on('message' , najzx => {
 //الطرد
 
 client.on('message', message => {
-    var prefix = "*"
+    var prefix = "&"
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -325,7 +310,7 @@ client.on('message', message => {
 //قفل و فتح الشات
 
 client.on('message', message => {
-var prefix = "*";
+var prefix = "&";
        if(message.content === prefix + "mutechannel") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
 
@@ -510,52 +495,13 @@ client.on('message', message => {
 
 
 
-//كود اللفل
-
-const fs = require("fs");
-client.on('message', async message =>{
-    let messageArray = message.content.split(" ");
-    let cmd = messageArray[0];
-    let args = messageArray.slice(1);
-    let xp = require("./xp.json");
-
-  let xpAdd = Math.floor(Math.random() * 7) + 8;
-  console.log(xpAdd);
-
-  if(!xp[message.author.id]){
-    xp[message.author.id] = {
-      xp: 0,
-      level: 1
-    };
-  }
-
-
-  let curxp = xp[message.author.id].xp;
-  let curlvl = xp[message.author.id].level;
-  let nxtLvl = xp[message.author.id].level * 300;
-  xp[message.author.id].xp =  curxp + xpAdd;
-  if(nxtLvl <= xp[message.author.id].xp){
-    xp[message.author.id].level = curlvl + 1;
-    let lvlup = new Discord.RichEmbed()
-    .setTitle("Level Up!")
-    .setColor(purple)
-    .addField("New Level", curlvl + 1);
-
-    message.channel.send(lvlup).then(msg => {msg.delete(5000)});
-  }
-  fs.writeFile("./xp.json", JSON.stringify(xp), (err) => {
-    if(err) console.log(err)
-  });
-});
-
-
 
 
 //الرتب التلقائية
 
 client.on ("guildMemberAdd", member => {
   
-   var role = member.guild.roles.find ("name", "New members");
+   var role = member.guild.roles.find ("name", "→Member←");
    member.addRole (role);
   
 })
@@ -570,7 +516,7 @@ client.on ("guildMemberRemove", member => {
 //الميوت و الغاء الميوت
 
 client.on('message', async message =>{
-  var prefix = "*";
+  var prefix = "&";
 const ms = require("ms");
 if (message.author.omar) return;
 if (!message.content.startsWith(prefix)) return;
